@@ -1,0 +1,73 @@
+# Project 3
+### Created by Asif Chowdhury, Justin Owens, Jash Choraria
+This is the third project for CS 329E Data Visualization. The data we will analyze comes from the Enigma.io website. The topic is a relationship between federal election campaign contributors and their income in Texas in 2008.
+In order to reproduce this project, please follow the following instructions.
+
+## Step 1
+#### Load the correct packages
+Use the following code to load the correct packages into RStudio.
+
+```{r message = FALSE}
+source("../01 Data/Packages.R", echo = TRUE)
+```
+
+## Step 2
+#### Import the data from the Oracle cloud server.
+
+The TX_INCOME data table has the following 6 columns: State, Zipcode, Gross Income, Wages, Paid Taxes and Income Tax
+
+```{r}
+source("../01 Data/TX_INCOME.R", echo = TRUE)
+```
+
+## Step 3
+#### Create a new dataframe.
+
+After getting the data table from the server, we can extract only the columns we want, those discussed above.
+
+```{r}
+source("../01 Data/Actual_data.R", echo = TRUE)
+```
+
+## Step 4
+#### Use data wrangling to create smaller dataframes for visualizations.
+
+The first visualization we will create will look at the average number of children deaths between the ages of 0 days to 59 months for each country. We will need to "wrangle" the data from our orignal table using this code:
+
+```{r}
+source("../02 Data Wrangling/Country_Death.R", echo = TRUE)
+```
+
+The second visualization will look at the median number of child deaths for each of the countries and each of the age groups. We will need to "wrangle" the data from our orignal table using this code:
+
+```{r}
+source("../02 Data Wrangling/Country_AgeGroup.R", echo = TRUE)
+```
+
+The third visual will look at the total number of deaths over time separated by each cqause of death. We will need to "wrangle" the data from our original table using this code:
+
+```{r}
+source("../02 Data Wrangling/Year_Cause.R", echo = TRUE)
+```
+
+## Step 5
+#### Use ggplot and the newly "wrangled" data frames to create interesting visuals.
+
+We will now create the interesting visuals for all of the dataframes we have "wrangled" in step 4.
+
+Visualization 1 - This visualization shows us the average death for each country for all causes for the entire time frame of the data. We can see that China's average child death is significantly higher than that of Japan, the United States and Germany; therefore, we will ignore China in the next visuals and comparisons.
+```{r}
+source("../03 Visualizations/Country_Death.R", echo = TRUE)
+```
+
+Visualization 2 - With China removed, we can now observe the median number of deaths in Germany, Japan and the United States individually by age group. We can tell that more children tend to die after 27 days and before 48months. The age groups do overlap, but seeing that the average amounts of deaths are higher in the 0-4 year range than the 0-27 day and 1-59 month ranges leads us to believe that more children die after 27 days and before 48 months. Overall, the United States had more childrens deaths.
+
+```{r}
+source("../03 Visualizations/Country_AgeGroup.R", echo = TRUE)
+```
+
+Visualization 3 - From this visual, we can see that the total number of childrens deaths due to all factors stayed relatively the same over time except with congenital anomalies and prematurity. There was an increase in the total childrens deaths caused by prematurity in 2005, and the deaths caused by congenital anomalies have decreased over time.
+
+```{r}
+source("../03 Visualizations/Year_Cause.R", echo = TRUE)
+```
