@@ -18,6 +18,7 @@ The TX_INCOME data table has the following 6 columns: State, Zipcode, Gross Inco
 
 ```{r}
 source("../01 Data/TX_INCOME.R", echo = TRUE)
+source("../01 Data/TX_CONT.R", echo = TRUE)
 ```
 
 ## Step 3

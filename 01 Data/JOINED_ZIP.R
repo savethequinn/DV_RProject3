@@ -1,0 +1,1 @@
+JOINED_ZIP <- inner_join(AVE_INC_ZIP, CONT_AVE_ZIP, by = "ZIPCODE")

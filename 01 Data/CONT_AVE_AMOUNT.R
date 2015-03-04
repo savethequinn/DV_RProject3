@@ -1,0 +1,1 @@
+CONT_AVE_AMOUNT <- TX_CONT %>% group_by(ZIPCODE) %>% summarise(AVE_AMOUNT = mean(AMOUNT))
