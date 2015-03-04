@@ -1,0 +1,1 @@
+JOINED_PARTY <- right_join(PARTY_CONT, PARTY_INCOME, by = "ZIPCODE")
