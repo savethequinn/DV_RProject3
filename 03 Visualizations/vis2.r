@@ -1,1 +1,1 @@
-ggplot(VIS2DF, aes(PARTY, AVE_CONT, color = ZIPCODE)) + geom_bar(stat="identity") + ggtitle('Contribution to Different Parties') + theme_solarized() + labs(x = "Party", y = "Contribution" )
+ggplot(VIS2DF, aes(PARTY, AVE_CONT)) + geom_bar(stat="identity") + ggtitle('Contribution to Different Parties') + theme_solarized() + labs(x = "Party", y = "Contribution" ) 
