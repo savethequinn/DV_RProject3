@@ -1,1 +1,1 @@
-ggplot(VIS2DF, aes(PARTY, AVE_CONT)) + geom_bar(stat="identity") + ggtitle('Contribution to Different Parties') + theme_solarized() + labs(x = "Party", y = "Contribution" ) 
+ggplot(innerjoin, aes(AMOUNT, AverageTaxes, color = ZIPCODE)) + geom_point(size = 2, colour="black") + ggtitle('Average Contribution to Different Parties') + theme_solarized() + labs(x = "Party", y = "Average Contribution" ) 

@@ -1,0 +1,1 @@
+innerjoin <- inner_join(TX_CONT, TX_INCOME, by = "ZIPCODE") %>% group_by (ID, ZIPCODE) %>% summarise(Amount = mean(AMOUNT), AverageIncome = mean(GROSS_INCOME), AverageWages = mean(WAGES), AverageTaxes = mean(TAXES), AverageIncomeTax = mean(INCOME_TAX))
