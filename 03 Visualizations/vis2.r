@@ -1,1 +1,0 @@
-ggplot(innerjoin, aes(AMOUNT, AverageTaxes, color = ZIPCODE)) + geom_point(size = 2, colour="black") + ggtitle('Average Contribution to Different Parties') + theme_solarized() + labs(x = "Party", y = "Average Contribution" ) 

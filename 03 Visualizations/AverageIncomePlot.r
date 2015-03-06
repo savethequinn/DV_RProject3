@@ -1,0 +1,1 @@
+ggplot(AVE_INC_ZIP, aes(x=AverageIncome, y=AverageTax)) + geom_point(size = 1, color = "#FF00CC") + ggtitle('Income vs. Taxes') + theme_solarized() + labs(x = "Average Income", y = "Average Taxes" ) + stat_smooth(method = "lm", se = FALSE) + scale_y_continuous(limits=c(0,20000000)) + scale_x_continuous(limits=c(0,550000000))
