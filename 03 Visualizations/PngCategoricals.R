@@ -30,8 +30,8 @@ for (i in names(TX_CONT)) {
 #  }
 #}
 
-#png("/Users/asif/Documents/GitHub/DataVisualization/DV_RProject3/03 Visualizations/categoricals.png", width = 15, height = 10, units = "in", res = 70)
-#grid.newpage()
+png("categoricals.png", width = 15, height = 10, units = "in", res = 70)
+grid.newpage()
 pushViewport(viewport(layout=grid.layout(1,4)))
 print(l[[1]],vp=viewport(layout.pos.row=1,layout.pos.col=1:2))
 print(l[[2]],vp=viewport(layout.pos.row=1,layout.pos.col=3:4))
