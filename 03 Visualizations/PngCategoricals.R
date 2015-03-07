@@ -15,14 +15,6 @@ for (i in names(TX_CONT)) {
   }
 }
 
-png("Categoricals.png", width = 15, height = 10, units = "in", res = 70)
-grid.newpage()
-pushViewport(viewport(layout=grid.layout(1,4)))
-print(l[[1]],vp=viewport(layout.pos.row=1,layout.pos.col=1:2))
-print(l[[2]],vp=viewport(layout.pos.row=1,layout.pos.col=3:4))
-
-dev.off()
-
 quantitative <- function(df, x) {
   names(df) <- c("x")
   ggplot(df, aes(x=x)) + geom_histogram() + labs(title = paste("NUMBER of CONTRIBUTORS by", i)) + labs(x = i) + theme(plot.title=element_text(size=15, face="bold", vjust=1, family = "Bauhaus 93"))
@@ -36,6 +28,15 @@ for (i in names(TX_CONT)) {
     l1[[i]] <- q
   }
 }
+
+png("Categoricals.png", width = 15, height = 10, units = "in", res = 70)
+grid.newpage()
+pushViewport(viewport(layout=grid.layout(1,4)))
+print(l[[1]],vp=viewport(layout.pos.row=1,layout.pos.col=1:2))
+print(l[[2]],vp=viewport(layout.pos.row=1,layout.pos.col=3:4))
+
+dev.off()
+
 png("Quantitative.png", width = 25, height = 10, units = "in", res = 72)
 grid.newpage()
 pushViewport(viewport(layout=grid.layout(1,6)))
