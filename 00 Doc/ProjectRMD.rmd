@@ -16,59 +16,72 @@ source("../01 Data/Packages.R", echo = TRUE)
 
 The TX_INCOME data table has the following 6 columns: State, Zipcode, Gross Income, Wages, Paid Taxes and Income Tax
 
+The TX_CONT data table has the following 5 columns: ID, Amount, Gender, Zipcode, Party
 ```{r}
 source("../01 Data/TX_INCOME.R", echo = TRUE)
 source("../01 Data/TX_CONT.R", echo = TRUE)
 ```
 
 ## Step 3
-#### Create a new dataframe.
-
-After getting the data table from the server, we can extract only the columns we want, those discussed above.
+#### Use data wrangling to create smaller dataframes for visualizations.
+With the two data tables, we successfully performed a series of data wrangling join operations to create a coherent and correlated data set. In order to create interesting visualizations, we first had to modify the TX_INCOME data table to provide us with the average income of people in austin based on their zipcodes.
 
 ```{r}
-source("../01 Data/Actual_data.R", echo = TRUE)
+source("../02 Data Wrangling/AVE_INC_ZIP.R", echo = TRUE)
+```
+
+It would be interesting to compare how gender influences political contributions and its realtionship with income. We manipulated the TX_CONT data table to give us the average amount contributed by the number of people of different gender to different parties for each zipcode. 
+
+```{r}
+source("../02 Data Wrangling/GENDER_COUNT.R", echo = TRUE)
+```
+
+The following data frame is the result of an inner join, joining the data frame only from the rows that actually match based on zipcode. The table is joined data set of contribution data set and income data set. The results have been grouped by zipcode and ID. It shows each ID's contributed amount and average income, wages and taxes. 
+
+```{r}
+source("../02 Data Wrangling/innerjoin.R", echo = TRUE)
+```
+
+We also performed an outer join on the gender-based political contribution and average income by zipocide data sets. This common predicate was the zipcode, allowing us to compare gender contributions based on income to federal campaign elections. The data is then grouped by gender and party and the average of the two columns is taken. 
+
+```{r}
+source("../02 Data Wrangling/outerjoin.R", echo = TRUE)
+```
+
+A semi join data wrangling operation was perfromed on the Gender-based political contribution table and the average income by zipcode data set, both which were manipulated above. this data set has all the rows of gender-based political contribution data set that has a match in averaege income by zipcode data frame.
+
+```{r}
+source("../02 Data Wrangling/SEMI_JOIN.R", echo = TRUE)
 ```
 
 ## Step 4
-#### Use data wrangling to create smaller dataframes for visualizations.
-
-The first visualization we will create will look at the average number of children deaths between the ages of 0 days to 59 months for each country. We will need to "wrangle" the data from our orignal table using this code:
-
-```{r}
-source("../02 Data Wrangling/Country_Death.R", echo = TRUE)
-```
-
-The second visualization will look at the median number of child deaths for each of the countries and each of the age groups. We will need to "wrangle" the data from our orignal table using this code:
-
-```{r}
-source("../02 Data Wrangling/Country_AgeGroup.R", echo = TRUE)
-```
-
-The third visual will look at the total number of deaths over time separated by each cqause of death. We will need to "wrangle" the data from our original table using this code:
-
-```{r}
-source("../02 Data Wrangling/Year_Cause.R", echo = TRUE)
-```
-
-## Step 5
 #### Use ggplot and the newly "wrangled" data frames to create interesting visuals.
 
-We will now create the interesting visuals for all of the dataframes we have "wrangled" in step 4.
+We will now create the interesting visuals for all of the dataframes we have "wrangled" in step 3.
 
-Visualization 1 - This visualization shows us the average death for each country for all causes for the entire time frame of the data. We can see that China's average child death is significantly higher than that of Japan, the United States and Germany; therefore, we will ignore China in the next visuals and comparisons.
-```{r}
-source("../03 Visualizations/Country_Death.R", echo = TRUE)
-```
-
-Visualization 2 - With China removed, we can now observe the median number of deaths in Germany, Japan and the United States individually by age group. We can tell that more children tend to die after 27 days and before 48months. The age groups do overlap, but seeing that the average amounts of deaths are higher in the 0-4 year range than the 0-27 day and 1-59 month ranges leads us to believe that more children die after 27 days and before 48 months. Overall, the United States had more childrens deaths.
+Visualization 1 - This visualization shows us the relationship between income and taxes. The United States of America follows a progressive tax system; greater your income, higher your tax bracket.The scatter plot with the line of best fit, created using the average income by zipcode data set, follows the same trend. As income increases, so does taxes paid. The scatter points, with respect to the line of the best fit, is interesting in this visualization. For smaller incomes, majority of the points lie below the line of best fit, while for those with larger incomes pay higher taxes compared to the average. One could potentially attribute this finding to the relative value of money. For people with smaller incomes, every penny saved in taxes significantly influences your real income as compared to those who make a lot more money and can afford to pay taxes in full. 
 
 ```{r}
-source("../03 Visualizations/Country_AgeGroup.R", echo = TRUE)
+source("../03 Visualizations/AverageIncomePlot.R", echo = TRUE)
 ```
 
-Visualization 3 - From this visual, we can see that the total number of childrens deaths due to all factors stayed relatively the same over time except with congenital anomalies and prematurity. There was an increase in the total childrens deaths caused by prematurity in 2005, and the deaths caused by congenital anomalies have decreased over time.
+Visualization 2 - After wrangling the two respective data sets, the following visualization shows the relationship between federal campaign contributions and averages taxes. Taxes paid are a good representation of the wealth bracket one falls under. By comparing this to contributions, we can look to find a relationship, if it exists, between taxes and federal campaign contributions. The results are of particular interest as there seems to be no correlation between the two. Infact, people with low incomes and average taxes make more personal contributions to federal elections. Most people in Texas contribute close to the same amount. Further analysis and research helps explains this trend in political contributions. More wealthy members contribute through PACs, special interest groups and business organizations in much larger denominations, consequently do not make large personal federal campaign contributions.
 
 ```{r}
-source("../03 Visualizations/Year_Cause.R", echo = TRUE)
+source("../03 Visualizations/InnerJoinPlot.R", echo = TRUE)
 ```
+
+Visualization 3 - Using an outer join on the data frames, we can observe other factors and their correlations as well. The following visualizations shows the average fiscal variables related to each political party and average contributions based on party preference. By comparing average wages, taxes, income taxes and average income and matching these with party contributions, one can identify which party these Texans identify themselves with. The data shows, suprisingly, that Democrats earn more income and pay more taxes as compared to Republicans. They also enjoy higher wages. Liberals, from the data wrangled, earn the highest income and the most wages as compared to the rest.
+
+After observing the second visualization that shows average federal campaign contributions by party, it is clear to see that Republicans contribute more than double as compared as to members of any other political party in Texas. This finding makes sense as Texas is predominantly a Republican state. 
+
+
+```{r}
+source("../03 Visualizations/OuterJoinPlot.R", echo = TRUE)
+```
+
+Visualization 4 - The final visualization compares gender and number of contributors based on political party preference. The graph also shows the difference in political contributions based on gender. It is interesting to note that there is an almost equal number of female democrat and republican contributors, with a few hundred more female republican contributors in Texas. However, there are more than twice as many male republican contributors as compared to democrat male supporters. These obersvations are in line with the political environment and preferences of Texas.  
+```{r}
+source("../03 Visualizations/SemiJoinPlot.R", echo = TRUE)
+```
+
